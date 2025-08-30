@@ -177,7 +177,7 @@ const MoonDescPage = () => {
                 <div className="mt-6 pt-4 border-t border-white/20">
                   <Link 
                     to={`/calendar/${year}/${month}`}
-                    className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-200 flex items-center justify-center gap-2"
+                    className="w-full bg-purple-600 hover:bg-purple-700 hover:to-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-200 flex items-center justify-center gap-2"
                   >
                     ← Back to Calendar
                   </Link>
