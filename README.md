@@ -1,6 +1,6 @@
 # 🌙 Moon Phase Calendar
 
-A responsive React web application that tracks lunar cycles throughout the year with accurate astronomical data and hemisphere-aware visualizations.
+A responsive React web application that tracks moon phases throughout the year.
 
 ## Features
 
