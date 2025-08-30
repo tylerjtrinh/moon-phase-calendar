@@ -56,9 +56,10 @@ const MoonCalendarPage = () => {
     <div className="min-h-screen bg-gradient-to-b from-indigo-950 via-purple-900 to-slate-900">
       {/* Hero Section */}
       <div className="relative py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">
-            <span className="text-yellow-300">{monthName} {year}</span> Moon Calendar
+        <div className="max-w-6xl mx-auto text-center">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-4">
+            <span className="text-yellow-300">{monthName} {year}</span>
+            <span className="block sm:inline"> Moon Calendar</span>
           </h1>
           <p className="text-xl sm:text-2xl text-gray-300 mb-8">
             Track the lunar cycles for {monthName} {year}
