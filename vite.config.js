@@ -7,5 +7,6 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   server: {
     port: 8000,
-  }
+  },
+  base: '/moon-phase-calendar/'
 })
