@@ -21,7 +21,10 @@ function App() {
         <Route path="moon/:year/:month/:day" element={<MoonDescPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
-    )
+    ),
+    {
+      basename: import.meta.env.DEV ? "/" : "/moon-phase-calendar"
+    }
   )
 
   return <RouterProvider router={router} />; 
