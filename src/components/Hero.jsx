@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 import { IoMoon, IoCalendar, IoArrowForward } from 'react-icons/io5'
 
@@ -6,16 +5,15 @@ const Hero = ({
   title = "Moon Calendar", 
   subtitle = "Track the lunar cycles throughout the year and discover moon phases.",
   showCTA = true,
-  ctaText = "View Current Month",
-  ctaLink = null 
+  ctaText = "View Current Month"
 }) => {
   // Variables for current month navigation
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
   const currentMonth = currentDate.getMonth() + 1;
   
-  // Use provided link or default to current month
-  const linkTo = ctaLink || `/calendar/${currentYear}/${currentMonth}`;
+  // Use current month as the link
+  const linkTo = `/calendar/${currentYear}/${currentMonth}`;
 
   return (
     <div className="relative overflow-hidden">
@@ -58,4 +56,4 @@ const Hero = ({
   )
 }
 
-export default Hero
+export default Hero;

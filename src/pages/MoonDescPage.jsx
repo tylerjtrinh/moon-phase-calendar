@@ -1,59 +1,75 @@
-import React, { useState, useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import { 
   getMoonPhaseDataLocal, 
   getMoonPhaseEmoji 
-} from '../utils/moonApiLocal'
+} from '../utils/sunCalc'
+import { 
+  getBrowserTimezone
+} from '../utils/timezone'
+import {
+  getHemisphereWithFallback 
+} from '../utils/moonApi'
+import MoonDataSidebar from '../components/MoonDataSidebar'
+import DateTimeHeader from '../components/DateTimeHeader'
+import HemisphereToggle from '../components/HemisphereToggle'
 
 const MoonDescPage = () => {
   const { year, month, day } = useParams();
   const [moonData, setMoonData] = useState(null);
   const [hemisphere, setHemisphere] = useState('northern');
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedTimezone, setSelectedTimezone] = useState(getBrowserTimezone());
 
-  // Calculate moon phase data for this specific day
+  // Calculate moon data
   useEffect(() => {
-    const calculateMoonData = () => {
+    const loadMoonData = () => {
       setIsLoading(true);
       
       try {
-        // Using default coordinates 
-        const data = getMoonPhaseDataLocal(parseInt(year), parseInt(month), parseInt(day), 40.7128, -74.0060);
+        // Automatically set hemisphere based on timezone (with fallback)
+        const timezoneHemisphere = getHemisphereWithFallback(selectedTimezone);
+        setHemisphere(timezoneHemisphere);
         
-        if (data) {
-          const phaseName = data.phaseName;
-          const phaseEmoji = getMoonPhaseEmoji(phaseName, hemisphere);
+        // Get moon phase data from SunCalc
+        const phaseData = getMoonPhaseDataLocal(
+          parseInt(year), 
+          parseInt(month), 
+          parseInt(day)
+        );
+        
+        if (phaseData) {
+          const phaseName = phaseData.phaseName;
+          const phaseEmoji = getMoonPhaseEmoji(phaseName, timezoneHemisphere);
           
           setMoonData({
-            illumination: data.illumination,
+            illumination: phaseData.illumination,
             phaseName: phaseName,
             emoji: phaseEmoji,
-            moonPhase: data.moon_phase,
-            phase: data.phase,
-            angle: data.angle,
-            distance: data.distance
+            moonPhase: phaseData.moon_phase,
+            phase: phaseData.phase,
+            angle: phaseData.angle
           });
         }
+        
+        setIsLoading(false);
+        
       } catch (err) {
-        console.error('Error calculating moon data:', err);
-      } finally {
+        console.error('Error loading moon data:', err);
         setIsLoading(false);
       }
     };
 
-    calculateMoonData();
-  }, [year, month, day, hemisphere]);
+    loadMoonData();
+  }, [year, month, day, selectedTimezone]);
 
-  // Format the date for display
-  const formatDate = () => {
-    const date = new Date(year, month - 1, day);
-    return date.toLocaleDateString('en-US', { 
-      weekday: 'long', 
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric' 
-    });
-  };
+  // Update emoji when hemisphere changes manually
+  useEffect(() => {
+    if (moonData) {
+      const phaseEmoji = getMoonPhaseEmoji(moonData.phaseName, hemisphere);
+      setMoonData(prev => ({ ...prev, emoji: phaseEmoji }));
+    }
+  }, [hemisphere, moonData?.phaseName]);
 
   // Get phase description based on phase name
   const getPhaseDescription = (phaseName) => {
@@ -81,10 +97,14 @@ const MoonDescPage = () => {
             {/* Main Content */}
             <div className="lg:col-span-2">
               
-              {/* Date Title */}
-              <h1 className="text-3xl sm:text-4xl font-bold text-white mb-4 text-center lg:text-left">
-                {formatDate()}
-              </h1>
+              {/* Date, Time, and Controls Header */}
+              <DateTimeHeader 
+                year={year}
+                month={month}
+                day={day}
+                selectedTimezone={selectedTimezone}
+                setSelectedTimezone={setSelectedTimezone}
+              />
               
               {/* Moon Phase Subtitle */}
               <h2 className="text-xl sm:text-2xl font-semibold text-purple-200 mb-6 text-center lg:text-left">
@@ -99,14 +119,10 @@ const MoonDescPage = () => {
               </div>
               
               {/* Hemisphere Toggle */}
-              <div className="mb-8 flex justify-center lg:justify-start">
-                <button
-                  onClick={() => setHemisphere(hemisphere === 'northern' ? 'southern' : 'northern')}
-                  className="px-4 py-2 rounded-lg transition-colors duration-200 bg-purple-600 hover:bg-purple-700 text-white text-sm"
-                >
-                  {hemisphere.charAt(0).toUpperCase() + hemisphere.slice(1)} Hemisphere View
-                </button>
-              </div>
+              <HemisphereToggle 
+                hemisphere={hemisphere}
+                setHemisphere={setHemisphere}
+              />
               
               {/* Description */}
               <div className="text-gray-200 text-lg leading-relaxed">
@@ -135,55 +151,13 @@ const MoonDescPage = () => {
             </div>
             
             {/* Right Sidebar - Data */}
-            <div className="lg:col-span-1 flex justify-center lg:justify-start lg:items-center">
-              <div className="bg-white/5 backdrop-blur-sm rounded-lg p-6 w-full max-w-sm">
-                <h3 className="text-xl font-semibold text-white mb-6 text-center">Moon Data</h3>
-                
-                <div className="space-y-4">
-                  <div className="border-b border-white/20 pb-3">
-                    <div className="text-sm text-gray-300 mb-1">Phase</div>
-                    <div className="text-lg text-white font-medium">
-                      {isLoading ? 'Loading...' : moonData ? moonData.phaseName : 'Unknown'}
-                    </div>
-                  </div>
-                  
-                  <div className="border-b border-white/20 pb-3">
-                    <div className="text-sm text-gray-300 mb-1">Illumination</div>
-                    <div className="text-lg text-white font-medium">
-                      {isLoading ? 'Loading...' : moonData ? moonData.illumination + '%' : 'Unknown'}
-                    </div>
-                  </div>
-                  
-                  <div className="border-b border-white/20 pb-3">
-                    <div className="text-sm text-gray-300 mb-1">Distance from Earth</div>
-                    <div className="text-lg text-white font-medium">
-                      {isLoading ? 'Loading...' : moonData ? 
-                        `${moonData.distance.toLocaleString()} km` : 
-                        'Unknown'
-                      }
-                    </div>
-                  </div>
-                  
-                  <div>
-                    <div className="text-sm text-gray-300 mb-1">Hemisphere</div>
-                    <div className="text-lg text-white font-medium capitalize">
-                      {hemisphere}
-                    </div>
-                  </div>
-                  
-                </div>
-                
-                {/* Back to Calendar Button */}
-                <div className="mt-6 pt-4 border-t border-white/20">
-                  <Link 
-                    to={`/calendar/${year}/${month}`}
-                    className="w-full bg-purple-600 hover:bg-purple-700 hover:to-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-200 flex items-center justify-center gap-2"
-                  >
-                    ← Back to Calendar
-                  </Link>
-                </div>
-              </div>
-            </div>
+            <MoonDataSidebar 
+              moonData={moonData}
+              selectedTimezone={selectedTimezone}
+              year={year}
+              month={month}
+              day={day}
+            />
             
           </div>
           

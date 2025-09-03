@@ -1,4 +1,3 @@
-import React from 'react'
 import { IoMoon, IoCalendar } from 'react-icons/io5'
 
 const HomeCards = () => {

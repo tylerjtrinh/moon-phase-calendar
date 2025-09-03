@@ -10,6 +10,7 @@ import CalendarPage from './pages/MoonCalendarPage';
 import MoonDescPage from './pages/MoonDescPage';
 import NotFoundPage from './pages/NotFoundPage'
 
+const env = import.meta.env;
 
 function App() {
   const router = createBrowserRouter(
@@ -23,7 +24,7 @@ function App() {
       </Route>
     ),
     {
-      basename: import.meta.env.DEV ? "/" : "/moon-phase-calendar"
+      basename: env.DEV ? "/" : env.VITE_ROUTER_BASENAME // Dev: root path, Prod: GitHub Pages path
     }
   )
 

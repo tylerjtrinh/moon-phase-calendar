@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { 
   getMoonPhaseDataMonthLocal, 
   getMoonPhaseEmoji 
-} from '../utils/moonApiLocal';
+} from '../utils/sunCalc';
 
 const MoonListings = ({ year, month, monthName }) => {
   //States
@@ -18,7 +18,7 @@ const MoonListings = ({ year, month, monthName }) => {
       setIsLoading(true);
       
       try {
-        // Get all moon data for the month using client-side calculations
+        // Get all moon data for the month using SunCalc
         const monthMoonData = getMoonPhaseDataMonthLocal(year, month);
         
         // Process the data for the current hemisphere
@@ -48,7 +48,7 @@ const MoonListings = ({ year, month, monthName }) => {
     };
 
     calculateMoonData();
-  }, [year, month, hemisphere]); // Re-calculate when year, month, or hemisphere changes
+  }, [year, month, hemisphere]); // Recalculate when year, month, or hemisphere changes
 
   // Toggle hemisphere function
   const toggleHemisphere = () => {
@@ -56,8 +56,8 @@ const MoonListings = ({ year, month, monthName }) => {
   };
 
   // Day headers (Sunday to Saturday)
-  const dayHeaders = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  const dayHeadersShort = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const dayHeaders = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']; //For larger screens
+  const dayHeadersShort = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];                         //For smaller screens
   
   // Calculate calendar grid
   const getDaysInMonth = () => {
@@ -134,11 +134,12 @@ const MoonListings = ({ year, month, monthName }) => {
                           </>
                         ) : moonData[day] ? (
                           <>
-                            <div className="text-xs sm:text-2xl md:text-2xl lg:text-3xl xl:text-5xl 2xl:text-7xl flex items-center justify-center flex-shrink-0 m-auto">{moonData[day].emoji}</div>
-                            <div className="text-gray-300 mt-1 text-center text-xs leading-tight px-1 hidden lg:block">
+                            <div className="flex-1 text-base sm:text-3x1 md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl flex items-center justify-center">
+                              {moonData[day].emoji}</div>
+                            <div className="text-gray-300 mt-1 text-center text-xs leading-tight px-1 hidden lg:block flex-shrink-0">
                               {moonData[day].phaseName}
                             </div>
-                            <div className="text-yellow-300 text-xs flex-shrink-0 m-auto hidden sm:block">
+                            <div className="text-yellow-300 text-xs flex-shrink-0 hidden lg:block">
                               {Math.round(moonData[day].illumination)}%
                             </div>
                           </>

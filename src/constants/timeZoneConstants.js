@@ -57,27 +57,3 @@ export const POPULAR_TIMEZONES = [
  * Default timezone (fallback)
  */
 export const DEFAULT_TIMEZONE = 'America/Los_Angeles';
-
-/**
- * Default date/time formatting options
- */
-export const DATE_FORMAT_OPTIONS = {
-  DISPLAY: {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    weekday: 'long'
-  },
-  TIME: {
-    hour: '2-digit',
-    minute: '2-digit',
-    hour12: true
-  },
-  TIME_WITH_SECONDS: {
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-    hour12: true,
-    timeZoneName: 'short'
-  }
-};
