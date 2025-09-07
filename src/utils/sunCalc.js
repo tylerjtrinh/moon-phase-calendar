@@ -20,7 +20,7 @@ export const getMoonPhaseDataLocal = (year, month, day) => {
   const moonIllumination = SunCalc.getMoonIllumination(date);
   
   // Convert SunCalc phase (0-1) to percentage
-  const illuminationPercentage = Math.round(moonIllumination.fraction * 100);
+  const illuminationPercentage = moonIllumination.fraction * 100;
   
   // Determine phase based on phase value (0-1) using values from phaseConstants.js
   const phase = moonIllumination.phase;

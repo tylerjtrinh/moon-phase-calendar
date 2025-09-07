@@ -6,22 +6,22 @@ const HomeCards = () => {
       <div className="max-w-6xl mx-auto">
         <div className="grid md:grid-cols-2 gap-8">
           
-          <div className="text-center p-6 bg-white/10 rounded-xl">
-            <div className="w-16 h-16 bg-gradient-to-br from-yellow-400 to-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
-              <IoMoon className="w-8 h-8 text-black" />
+          <div className="text-center p-6 bg-slate-800/50 rounded-xl border border-slate-700">
+            <div className="w-16 h-16 bg-slate-600 rounded-full flex items-center justify-center mx-auto mb-4">
+              <IoMoon className="w-8 h-8 text-slate-200" />
             </div>
             <h3 className="text-xl font-semibold text-white mb-3">Moon Phases</h3>
-            <p className="text-gray-300">
+            <p className="text-slate-400">
               Track all lunar phases from new moon to full moon and everything in between.
             </p>
           </div>
 
-          <div className="text-center p-6 bg-white/10 rounded-xl">
-            <div className="w-16 h-16 bg-gradient-to-br from-purple-400 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+          <div className="text-center p-6 bg-slate-800/50 rounded-xl border border-slate-700">
+            <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
               <IoCalendar className="w-8 h-8 text-white" />
             </div>
             <h3 className="text-xl font-semibold text-white mb-3">Monthly View</h3>
-            <p className="text-gray-300">
+            <p className="text-slate-400">
               Browse any month and year to see the complete lunar calendar.
             </p>
           </div>

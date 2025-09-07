@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { FaExclamationTriangle } from 'react-icons/fa'
-"min-h-screen bg-gradient-to-b from-indigo-950 via-purple-900 to-slate-900"
+
 const NotFound = () => {
   return (
     <section className="min-h-screen bg-gradient-to-b from-indigo-950 via-purple-900 to-slate-900">

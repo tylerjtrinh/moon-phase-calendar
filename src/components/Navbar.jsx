@@ -11,11 +11,11 @@ const Navbar = () => {
 
   const linkClass = ({ isActive }) => 
     isActive 
-      ? 'text-black bg-yellow-400 hover:bg-white hover:text-black rounded-md px-2 sm:px-3 py-2 text-xs sm:text-sm font-medium'
-      : 'text-white hover:bg-white hover:text-black rounded-md px-2 sm:px-3 py-2 text-xs sm:text-sm font-medium';
+      ? 'text-white bg-purple-600 hover:bg-purple-700 rounded-md px-2 sm:px-3 py-2 text-xs sm:text-sm font-medium'
+      : 'text-slate-300 hover:bg-slate-700 hover:text-white rounded-md px-2 sm:px-3 py-2 text-xs sm:text-sm font-medium';
 
   return (
-    <nav className="bg-indigo-950">
+    <nav className="bg-indigo-950 border-b border-slate-400">
       <div className="px-2 sm:px-4 lg:px-6">
         <div className="flex h-16 sm:h-20 items-center">
           {/* Logo/Title */}

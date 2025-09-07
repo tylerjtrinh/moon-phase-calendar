@@ -74,14 +74,28 @@ const MoonDescPage = () => {
   // Get phase description based on phase name
   const getPhaseDescription = (phaseName) => {
     const descriptions = {
-      'New Moon': 'The New Moon is the lunar phase when the Moon is positioned between Earth and the Sun, making it invisible from Earth. This marks the beginning of the lunar cycle and is often associated with new beginnings and fresh starts.',
-      'Waxing Crescent': 'The Waxing Crescent appears as a thin sliver of light on the right side of the Moon. This phase occurs as the Moon begins to move away from the Sun in its orbit, gradually revealing more of its illuminated surface.',
-      'First Quarter': 'The First Quarter Moon appears as a perfect half-circle, with the right side illuminated. This phase occurs about a week after the New Moon and represents a time of decision-making and taking action.',
-      'Waxing Gibbous': 'The Waxing Gibbous phase shows more than half of the Moon illuminated, continuing to grow toward the Full Moon. This is a time of refinement and adjustment as lunar energy builds.',
-      'Full Moon': 'The Full Moon is the lunar phase when the Moon appears fully illuminated from Earth\'s perspective. This occurs when Earth is located between the Sun and the Moon, allowing the Sun\'s light to fully illuminate the Moon\'s surface that faces Earth.',
-      'Waning Gibbous': 'The Waning Gibbous phase occurs after the Full Moon, when the illuminated area begins to decrease. This phase is associated with gratitude, sharing wisdom, and giving back.',
-      'Last Quarter': 'The Last Quarter Moon appears as a half-circle with the left side illuminated. This phase represents a time of release, forgiveness, and letting go of what no longer serves you.',
-      'Waning Crescent': 'The Waning Crescent appears as a thin sliver of light on the left side of the Moon. This final phase before the New Moon is a time for rest, reflection, and preparation for the new cycle ahead.'
+      'New Moon': `The New Moon is the lunar phase when the Moon is positioned between Earth and the Sun, 
+                   making its illuminated side, which is facing away from Earth, invisible to us. This marks the beginning of the 
+                   lunar cycle and is often associated with new beginnings and fresh starts.`,
+      'Waxing Crescent': `The Waxing Crescent appears as a thin sliver of light on the right side of the Moon. 
+                          This phase occurs as the Moon begins to move away from the Sun in its orbit, gradually 
+                          revealing more of its illuminated surface. The "waxing" in its name signifies this increasing illumination`,
+      'First Quarter': `The First Quarter Moon appears as a perfect half-circle, with the right side illuminated. 
+                        This phase occurs about a week after the New Moon and represents a time of decision-making and taking action.`,
+      'Waxing Gibbous': `The Waxing Gibbous phase shows more than half of the Moon illuminated, continuing to grow toward the Full Moon. 
+                         The "waxing" in its name signifies this increasing illumination
+                         This is a time of refinement and adjustment as lunar energy builds.`,
+      'Full Moon': `The Full Moon is the lunar phase when the Moon appears fully illuminated from Earth\'s perspective. 
+                    This occurs when Earth is located between the Sun and the Moon, allowing the Sun\'s light to fully illuminate 
+                    the Moon\'s surface that faces Earth.`,
+      'Waning Gibbous': `The Waning Gibbous phase occurs after the Full Moon, when the illuminated area begins to decrease. 
+                         The "waning" in its name signifies this decreasing illumination.
+                         This phase is associated with gratitude, sharing wisdom, and giving back.`,
+      'Last Quarter': `The Last Quarter Moon appears as a half-circle with the left side illuminated. 
+                       This phase represents a time of release, forgiveness, and letting go of what no longer serves you.`,
+      'Waning Crescent': `The Waning Crescent appears as a thin sliver of light on the left side of the Moon. 
+                          The "waning" in its name signifies this decreasing illumination.
+                          This final phase before the New Moon is a time for rest, reflection, and preparation for the new cycle ahead.`
     };
     
     return descriptions[phaseName] || 'This lunar phase represents a unique moment in the Moon\'s cycle around Earth.';

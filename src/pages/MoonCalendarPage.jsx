@@ -58,14 +58,14 @@ const MoonCalendarPage = () => {
       <div className="relative py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto text-center">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-4">
-            <span className="text-yellow-300">{monthName} {year}</span>
+            <span className="text-white">{monthName} {year}</span>
             <span className="block sm:inline"> Moon Calendar</span>
           </h1>
           <p className="text-xl sm:text-2xl text-gray-300 mb-8">
             Track the lunar cycles for {monthName} {year}
           </p>
           <div className="flex justify-center">
-            <IoMoon className="w-20 h-20 sm:w-24 sm:h-24 lg:w-32 lg:h-32 text-yellow-300 drop-shadow-2xl" />
+            <IoMoon className="w-20 h-20 sm:w-24 sm:h-24 lg:w-32 lg:h-32 text-slate-300 drop-shadow-2xl" />
           </div>
         </div>
       </div>
@@ -76,7 +76,7 @@ const MoonCalendarPage = () => {
           <div className="flex justify-between items-center bg-white/10 backdrop-blur-sm rounded-xl p-4">
             <Link 
               to={`/calendar/${prevMonth.year}/${prevMonth.month}`}
-              className="flex items-center space-x-2 text-white hover:text-yellow-300 transition-colors duration-200"
+              className="flex items-center space-x-2 text-slate-300 hover:text-white transition-colors duration-200"
             >
               <IoChevronBack className="w-5 h-5" />
               <span className="hidden sm:inline">
@@ -93,7 +93,7 @@ const MoonCalendarPage = () => {
             
             <Link 
               to={`/calendar/${nextMonth.year}/${nextMonth.month}`}
-              className="flex items-center space-x-2 text-white hover:text-yellow-300 transition-colors duration-200"
+              className="flex items-center space-x-2 text-slate-300 hover:text-white transition-colors duration-200"
             >
               <span className="hidden sm:inline">
                 {monthNames[nextMonth.month - 1]} {nextMonth.year}

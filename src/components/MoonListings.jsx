@@ -134,13 +134,10 @@ const MoonListings = ({ year, month, monthName }) => {
                           </>
                         ) : moonData[day] ? (
                           <>
-                            <div className="flex-1 text-base sm:text-3x1 md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl flex items-center justify-center">
+                            <div className="flex-1 text-xs sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl flex items-center justify-center">
                               {moonData[day].emoji}</div>
                             <div className="text-gray-300 mt-1 text-center text-xs leading-tight px-1 hidden lg:block flex-shrink-0">
                               {moonData[day].phaseName}
-                            </div>
-                            <div className="text-yellow-300 text-xs flex-shrink-0 hidden lg:block">
-                              {Math.round(moonData[day].illumination)}%
                             </div>
                           </>
                         ) : (

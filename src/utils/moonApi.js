@@ -83,7 +83,7 @@ export const getAstronomyData = async (year, month, day, timezone) => {
         moon_distance: data.moon_distance,
         moon_altitude: data.moon_altitude,
         moon_azimuth: data.moon_azimuth,
-        moon_illumination_percentage: data.moon_illumination_percentage,
+        moon_illumination_percentage: Math.abs(Number(data.moon_illumination_percentage)),
         moon_angle: data.moon_angle,
         timezone: timezone, // Use the input timezone
         date: data.date
